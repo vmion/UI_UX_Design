@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: bf3d0bc620888ef42877f4855237464d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Constantia
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2a88ed72a81d75f4d86f46cb6b2496ca, type: 3}
+  - {fileID: 12800000, guid: d1472504a87ce8a4098985f2766dcce8, type: 3}
+  - {fileID: 12800000, guid: 2fff858e547314841ad9547c3b5459ca, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
