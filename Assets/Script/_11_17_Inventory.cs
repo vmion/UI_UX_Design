@@ -9,16 +9,14 @@ public class _11_17_Inventory : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 {   
     public Image moveIcon;
     public List<_11_17_InventorySlot> list;
-    int selectedSlot;
-    int dropSlot;
+    int selectedSlot;    
     string iconName;    
     void Start()
-    {
-        
+    {        
     }
     public void OnPointerDown(PointerEventData _eventdata)
-    {                      
-        for(int i = 0; i < list.Count; i++)
+    {      
+        for (int i = 0; i < list.Count; i++)
         {           
             if(list[i].IsInRect(_eventdata.position))
             {
@@ -41,50 +39,43 @@ public class _11_17_Inventory : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         list[selectedSlot].icon.gameObject.SetActive(true);
         list[selectedSlot].icon.sprite = Resources.Load<Sprite>(iconName);        
         moveIcon.sprite = null;
-        moveIcon.gameObject.SetActive(false);
+        moveIcon.gameObject.SetActive(false);        
     }
     public void OnBeginDrag(PointerEventData _eventdata)
-    {
-        //moveIcon.transform.position = _eventdata.position;        
+    {        
+        moveIcon.transform.position = _eventdata.position;
     }
     public void OnDrag(PointerEventData _eventdata)
-    {
-        moveIcon.transform.position = _eventdata.position;
-        iconName = moveIcon.sprite.name;
+    {        
+        moveIcon.transform.position = _eventdata.position;        
     }
     public void OnEndDrag(PointerEventData _eventdata)
-    {
+    {  
         for (int i = 0; i < list.Count; i++)
         {
             if (list[i].IsInRect(_eventdata.position))
             {
-                dropSlot = i;
-                string str = list[dropSlot].icon.name;
-                if (list[dropSlot].icon.gameObject.activeSelf == false)
+                if (list[i].icon.gameObject.activeSelf == false)
                 {
-                    list[dropSlot].icon.gameObject.SetActive(true);
-                    list[dropSlot].icon.sprite = Resources.Load<Sprite>(iconName);
+                    string sprName = list[selectedSlot].icon.sprite.name;
+                    list[i].icon.gameObject.SetActive(true);
+                    list[i].icon.sprite = Resources.Load<Sprite>(sprName);
+                    moveIcon.sprite = null;
                     moveIcon.gameObject.SetActive(false);
                 }
-                else if (list[dropSlot].icon.gameObject.activeSelf == true &&
-                    list[dropSlot].icon.sprite.name != moveIcon.sprite.name)
-                {                    
-                    list[dropSlot].icon.sprite = Resources.Load<Sprite>(iconName);
-                    list[selectedSlot].icon.sprite = Resources.Load<Sprite>(str);
+                else
+                {
+                    string from = list[selectedSlot].icon.sprite.name;
+                    string to = list[i].icon.sprite.name;
+                    list[selectedSlot].icon.sprite = Resources.Load<Sprite>(to);
+                    list[i].icon.sprite = Resources.Load<Sprite>(from);
+                    moveIcon.sprite = null;
                     moveIcon.gameObject.SetActive(false);
                 }
-            }
-            else if (!list[i].IsInRect(_eventdata.position))
-            {
-                list[selectedSlot].icon.gameObject.SetActive(true);
-                list[selectedSlot].icon.sprite = Resources.Load<Sprite>(iconName);
-                moveIcon.gameObject.SetActive(false);
-            }
-        }
-        
+            }           
+        }        
     }
     void Update()
-    {
-        
+    {        
     }
 }
