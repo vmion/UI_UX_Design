@@ -18,7 +18,7 @@ public class _11_15_JoyStick : MonoBehaviour
     }
     public void OnPointerDown(BaseEventData _eventData)
     {
-        PointerEventData eventData = (PointerEventData)_eventData;
+        PointerEventData eventData = (PointerEventData)_eventData;        
         Debug.Log(eventData.position);
         InnerStick.transform.position = eventData.position;
     }
